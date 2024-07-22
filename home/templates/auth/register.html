@@ -1,0 +1,42 @@
+{%extends 'layouts/base.html'%}
+
+{%block content%}
+
+<div class="container mt-5">
+    <div class=" card col-6 offset-3" style="width: 70%;">
+        <form method="post" action="{% url 'register' %}">
+            {%csrf_token%}
+
+            <h1></h1>
+            <h4>Register to your account</h4>
+            {% if messages %}
+            {{ message.tags }}
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+
+            {% endif %}
+            <div class="form-group mb-3">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" class="form-control" name="first_name" placeholder="Frist Name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleInputEmail1">Last Name</label>
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" name="username" placeholder="Enter Username">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Enter Password">
+            </div>
+            <p>Already have account <a href="/login">Login</a></p>
+            <button type="submit" class="btn btn-primary" style="width: 20%;">Submit</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

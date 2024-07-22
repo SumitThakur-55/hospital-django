@@ -1,0 +1,59 @@
+{%extends 'layouts/base.html'%}
+
+{%block content%}
+
+
+<div class="container mt-5" method="post">
+    <div class=" card col-6 offset-3" style="width: 80%;">
+        <h3>Hi,{{ request.user.first_name }} Book an Appointment!</h3>
+        {% if messages %}
+        {{ message.tags }}
+        <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+
+        {% endif %}
+        <form method="post" action="{% url 'appointment' %}">
+            {%csrf_token%}
+            <div class=" form-group mb-3">
+                <label for="exampleFormControlInput1">First Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="First Name"
+                    name="first_name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleFormControlInput1">Last Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Last Name"
+                    name="last_name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+                    name="email">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleFormControlInput1">Phone Number</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="phone_number"
+                    name="phone_number">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleFormControlInput1">Date of Appointment</label>
+                <input type="date" class="form-control" id="exampleFormControlInput1" min="{{ today }}"
+                    name="date_of_appointment" placeholder="Date of Appointment">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exampleFormControlSelect1">Select Doctor</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="doctor">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary ">Book an Appointment</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,51 @@
+{%extends 'layouts/base.html'%}
+
+{%block content%}
+<h2>sumit</h2>
+<h1>user : {{ request.user.first_name }}</h1>
+<a href="/logout/" class="btn btn-primary">Logout</a>
+
+<div class="container-fluid" method="post">
+
+    <form class="col 80" method="post" action="{% url 'update-appointment' appointments.id %}">
+        {%csrf_token%}
+        <div class=" form-group">
+            <label for="exampleFormControlInput1">First Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="First Name"
+                value="{{appointments.first_name}}" name="first_name">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Last Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Last Name"
+                value="{{appointments.last_name}}" name="last_name">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+                value="{{appointments.email}}" name="email">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Phone Number</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="phone_number"
+                value="{{appointments.phone_number}}" name="phone_number">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Date of Appointment</label>
+            <input type="date" class="form-control" id="exampleFormControlInput1" min="1900-01-01"
+                name="date_of_appointment" value="{{ appointments.date_of_appointment|date:'Y-m-d' }}"
+                placeholder="Date of Appointment">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Select Doctor</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="doctor" value="{{appointments.doctor}}">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary ">Update an Appointment</button>
+    </form>
+</div>
+{%endblock%}
